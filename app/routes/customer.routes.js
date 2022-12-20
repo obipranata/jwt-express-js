@@ -33,4 +33,10 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.byId
   );
+
+  app.post(
+    "/api/customer/:id/delete",
+    [authJwt.verifyToken],
+    controller.delete
+  );
 }

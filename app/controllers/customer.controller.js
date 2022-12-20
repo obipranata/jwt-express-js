@@ -18,6 +18,23 @@ exports.add = (req, res) => {
     });
 }
 
+exports.delete = (req, res) => {
+  Customer.destroy({
+    where: {
+      id: req.params.id
+    }
+  }
+  )
+    .then((customer) => {
+      res.status(200).send({
+        message: "Data berhasil di dihapus",
+        data: customer
+      })
+    }).catch(err => {
+      res.status(500).send({ message: err.message });
+    });
+}
+
 exports.all = (req, res) => {
   Customer.findAll()
     .then((customer) => {
@@ -45,7 +62,7 @@ exports.byId = (req, res) => {
       res.status(200).send({
         message: "Data berhasil di dapatkan",
         data: customer
-      })
+      });
     }).catch(err => {
       res.status(500).send({ message: err.message });
     });
