@@ -36,6 +36,12 @@ exports.byId = (req, res) => {
     }
   })
     .then((customer) => {
+      if (!customer) {
+        res.status(404).send({
+          message: "Customer tidak ditemukan",
+          data: customer
+        });
+      }
       res.status(200).send({
         message: "Data berhasil di dapatkan",
         data: customer
@@ -48,7 +54,7 @@ exports.byId = (req, res) => {
 exports.update = (req, res) => {
   Customer.findOne({
     where: {
-      email: req.body.email
+      id: req.params.id
     }
   }).then((customer) => {
     if (!customer) {

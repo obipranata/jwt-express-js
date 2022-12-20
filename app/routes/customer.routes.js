@@ -17,7 +17,7 @@ module.exports = function (app) {
   );
 
   app.post(
-    "/api/customer/update",
+    "/api/customer/update/:id",
     [authJwt.verifyToken],
     controller.update
   );
