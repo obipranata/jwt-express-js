@@ -15,4 +15,28 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.add
   );
+
+  app.post(
+    "/api/produk/update/:id",
+    [authJwt.verifyToken],
+    controller.update
+  );
+
+  app.get(
+    "/api/product/all",
+    [authJwt.verifyToken],
+    controller.all
+  );
+
+  app.get(
+    "/api/product/:id",
+    [authJwt.verifyToken],
+    controller.byId
+  );
+
+  app.post(
+    "/api/product/:id/delete",
+    [authJwt.verifyToken],
+    controller.delete
+  );
 }
